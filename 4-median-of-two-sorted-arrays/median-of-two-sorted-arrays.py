@@ -5,6 +5,7 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: float
         """
+        # O(m+n)
         size1 = len(nums1)
         size2 = len(nums2)
         size = size1+size2
