@@ -5,28 +5,23 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: float
         """
-        maxHeap=[] # max heap of smaller nums 
-        minHeap=[] # min heap of bigger nums 
-        # we try to balance the length of both.
-        def addNum(num):
-            if not maxHeap or num <= -maxHeap[0]:
-                heappush(maxHeap,-num)
+        size1 = len(nums1)
+        size2 = len(nums2)
+        size = size1+size2
+        req= size//2
+        prev,cur=0,0
+        i,j=0,0
+        while(i+j<req+1):
+            prev=cur
+            if i<size1 and (j>=size2 or  nums1[i] < nums2[j]):
+                cur = nums1[i]
+                i+=1
             else:
-                heappush(minHeap,num)
-            # now balance part I am okat with maxHeap being bigger by 1 (odd number of elements)
+                cur=nums2[j]
+                j+=1
+        if size % 2 ==0:
+            return (prev+cur)/2.0
+        return float(cur)
 
-            if len(maxHeap) > len(minHeap) +1:
-                heappush(minHeap, -heappop(maxHeap))
-            if len(minHeap) > len(maxHeap):
-                heappush(maxHeap, -heappop(minHeap))
-        for num in nums1:
-            addNum(num)
-        for num in nums2:
-            addNum(num)
-        if len(maxHeap) > len(minHeap):
-            return -1.0* maxHeap[0]
-        else:
-            # print("Hello")
-            # print(maxHeap)
-            # print(minHeap)
-            return (-maxHeap[0] + minHeap[0] )/2.0
+
+        
