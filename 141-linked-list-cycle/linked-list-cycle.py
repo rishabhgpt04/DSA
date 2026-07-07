@@ -12,18 +12,25 @@ class Solution(object):
         """
         # using memory 
         
-        def helper(head,mem):
-            if head==None :
-                return False
-            if (head in mem) :
-                return True
-            chk = False
-            mem[head]=True
-            chk = helper(head.next,mem)
+        # def helper(head,mem):
+        #     if head==None :
+        #         return False
+        #     if (head in mem) :
+        #         return True
+        #     chk = False
+        #     mem[head]=True
+        #     chk = helper(head.next,mem)
             
-            return chk 
-        mem={}
-        return helper(head,mem)
+        #     return chk 
+        # mem={}
+        # return helper(head,mem)
+        slow,fast = head,head
+        while(fast  and  fast.next ):
+            slow = slow.next
+            fast=fast.next.next
 
+            if slow == fast:
+                return True
+        return False
 
 
