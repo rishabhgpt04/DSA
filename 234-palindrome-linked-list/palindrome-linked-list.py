@@ -18,8 +18,8 @@ class Solution:
             slow = slow.next
             fast=fast.next.next
         rev_head=reverse(slow)
-        print(head.val)
-        print(rev_head.val)
+        # print(head.val)
+        # print(rev_head.val)
         while(rev_head):
             if head.val!=rev_head.val:
                 return False
